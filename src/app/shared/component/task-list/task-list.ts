@@ -50,8 +50,6 @@ export class TaskList {
   filteredTasks = computed<Task[]>(() =>
     this.tasks().filter((task) => {
       const term = this.debouncedSearch.value().toLowerCase();
-      console.log(term, '--', task.title.toLowerCase());
-
       return (
         (this.statusFilter() === 'all' || task.status === this.statusFilter()) &&
         (this.priorityFilter() === 'all' || task.priority === this.priorityFilter()) &&

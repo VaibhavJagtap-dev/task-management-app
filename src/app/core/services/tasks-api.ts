@@ -25,8 +25,6 @@ export class TasksApi {
   }
 
   deleteTask(id: number): Observable<void> {
-    console.log(`${this.apiUrl}/${id}`);
-
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
