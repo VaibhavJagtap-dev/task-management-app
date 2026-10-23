@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: 1400px;
+  margin:  0 auto;
+  padding: 20px 10px;
+
+  .app-name {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      transform: scale(0.99);
+      transition: transform ease-in-out 50ms;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="edit-task">
+  @if (isApiloading()) {
+    <app-api-loading [message]="'fetching task ID: ' + id()"></app-api-loading>
+  } @else {
+    <app-task-form
+      [task]="task()"
+      [saving]="saving()"
+      (submitted)="onSubmitted($event)"
+      (cancelled)="onCancelled()"
+    ></app-task-form>
+  }
+</div>

@@ -1,0 +1,40 @@
+@if (task(); as task) {
+  <mat-card appearance="raised" class="task-card" [attr.data-priority]="task.priority">
+    <mat-card-header>
+      <mat-card-title class="task-title" [class.done]="task.status === 'done'">
+        {{ task.title }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="task-content">
+      <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip [attr.data-status]="task.status">
+          {{ task.status.replace('_', ' ') | uppercase }}
+        </mat-chip>
+
+        <mat-chip [attr.data-priority]="task.priority">
+          {{ task.priority.replace('_', ' ') | uppercase }}
+        </mat-chip>
+      </mat-chip-listbox>
+
+      <p class="task-description">{{ task.description }}</p>
+
+      <div class="due" [class.overdue]="isOverdue()">
+        <mat-icon>{{ isOverdue() ? 'warning' : 'event' }}</mat-icon>
+        <span>Due {{ task.dueDate | date: 'mediumDate' }}</span>
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions align="end" class="task-actions">
+      <a matIconButton class="edit-btn" aria-label="Edit task" [routerLink]="[task.id, 'edit']">
+        <mat-icon>edit</mat-icon>
+      </a>
+
+      <button matIconButton class="delete-btn" aria-label="Delete task" (click)="onDelete(task.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+}

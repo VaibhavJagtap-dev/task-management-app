@@ -1,0 +1,15 @@
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  height: 80px;
+}
+
+:host {
+  display: block;
+  height: auto;       /* Force structural components to control the final layout size */
+  min-height: 100vh;
+}

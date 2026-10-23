@@ -1,0 +1,99 @@
+p {
+  margin: 0;
+}
+
+.task-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 238px;
+
+  .task-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  // Accent bar on the left edge
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: var(--mat-sys-primary);
+  }
+
+  // Accent color driven by priority
+  &[data-priority='low']::before    { background: var(--mat-sys-tertiary); }
+  &[data-priority='medium']::before { background: var(--mat-sys-primary); }
+  &[data-priority='high']::before   { background: var(--mat-sys-error); }
+
+  &:hover {
+    transform: translateY(-0.5px);
+    box-shadow: var(--mat-sys-level3);
+  }
+}
+
+.task-title {
+  font: var(--mat-sys-title-medium);
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+  padding-top: 8px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Change this integer to any number of lines you want (e.g., 3, 4, 5) */
+  overflow: hidden;
+
+  &.done {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+}
+
+.task-description {
+  color: var(--mat-sys-on-surface-variant);
+  font: var(--mat-sys-body-medium);
+  line-height: 1.5;
+
+  // Clamp to 3 lines
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Change this integer to any number of lines you want (e.g., 3, 4, 5) */
+  overflow: hidden;
+}
+
+.due {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: var(--mat-sys-label-medium);
+  color: var(--mat-sys-on-surface-variant);
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &.overdue {
+    color: var(--mat-sys-error);
+    font-weight: 600;
+  }
+}
+
+.task-actions {
+  padding: 4px 12px 8px;
+}
+
+.edit-btn:hover {
+  color: var(--mat-sys-primary);
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+}
+
+.delete-btn:hover {
+  color: var(--mat-sys-error);
+  background: color-mix(in srgb, var(--mat-sys-error) 12%, transparent);
+}

@@ -1,0 +1,7 @@
+<div class="create-task">
+  <app-task-form
+    [saving]="saving()"
+    (submitted)="onSubmitted($event)"
+    (cancelled)="onCancelled()"
+  ></app-task-form>
+</div>

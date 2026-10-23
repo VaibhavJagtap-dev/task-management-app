@@ -1,0 +1,11 @@
+<div class="navbar">
+  <a class="app-name" routerLink="/tasks">TASKS MANAGEMENT</a>
+
+  <div class="actions">
+    @if (isTasksPage()) {
+      <a matButton="filled" routerLink="/tasks/new" class="delete-btn" aria-label="Delete task"
+        >Create Task</a
+      >
+    }
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.message {
+  margin: 0;
+  max-width: 360px;
+  line-height: 1.5;
+  color: #5f6368;
+
+  strong {
+    color: #202124;
+  }
+}
+
+.delete-btn {
+  background-color: #d93025;
+  color: #fff;
+
+  &:hover {
+    background-color: #b3261e;
+  }
+}

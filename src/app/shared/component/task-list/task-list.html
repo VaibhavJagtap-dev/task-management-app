@@ -1,0 +1,61 @@
+<div class="filter-box">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search tasks</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      type="search"
+      placeholder="Search by title"
+      [value]="searchTerm()"
+      (input)="onSearchTermChange($event)"
+    />
+    @if (searchTerm()) {
+      <button class="clear-btn" matIconButton matSuffix aria-label="Clear search" (click)="clear()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Status</mat-label>
+    <select matNativeControl required (change)="onStatusChange($event)">
+      @for (status of statusValues; track $index) {
+        <option [value]="status">{{ status.replaceAll('_', ' ') | uppercase }}</option>
+      }
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Priority</mat-label>
+    <select matNativeControl required (change)="onPriortyChange($event)">
+      @for (priority of priorityValues; track $index) {
+        <option [value]="priority">{{ priority.replaceAll('_', ' ') | uppercase }}</option>
+      }
+    </select>
+  </mat-form-field>
+</div>
+
+<div class="task-grid">
+  @if (filteredTasks().length > 0) {
+    @for (task of pagedTasks(); track task.id) {
+      <app-task-card [task]="task" (delete)="onDelete($event)" />
+    }
+  } @else {
+    <div class="empty-state" role="status">
+      <mat-icon class="empty-icon">task_alt</mat-icon>
+      <h3>No tasks found</h3>
+      <p>Try changing your search or filters, or create a new task.</p>
+      <a matButton="outlined" color="primary" routerLink="/tasks/new">New task</a>
+    </div>
+  }
+</div>
+
+<mat-paginator
+  [length]="filteredTasks().length"
+  [pageSize]="pageSize()"
+  [pageIndex]="pageIndex()"
+  [pageSizeOptions]="[3, 6]"
+  showFirstLastButtons
+  aria-label="Select page of tasks"
+  (page)="onPage($event)"
+/>

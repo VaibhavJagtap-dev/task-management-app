@@ -1,0 +1,7 @@
+<div class="card-container">
+  @if (isApiLoading()) {
+    <app-api-loading message="Loading tasks from the API..." />
+  } @else {
+    <app-task-list [tasks]="tasks()" (refereshApi)="getTasks()"></app-task-list>
+  }
+</div>
