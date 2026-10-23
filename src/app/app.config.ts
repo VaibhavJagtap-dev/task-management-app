@@ -8,12 +8,14 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MockDataService } from './core/services/mock-data-service';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(),
+    provideHttpClient(),
     // Intercepts HTTP requests and routes them to our MockDataService
     importProvidersFrom(
       InMemoryWebApiModule.forRoot(MockDataService, {
